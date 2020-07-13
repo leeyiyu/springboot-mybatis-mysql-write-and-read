@@ -1,0 +1,57 @@
+server:
+  port: 8088
+
+logging:
+  config: classpath:logback.xml
+  path: logs
+
+mybatis:
+  mapperLocations: classpath:/mapper/*.xml
+  typeAliasesPackage: com.lee.dao
+  mapperScanPackage: com.lee.dao
+  configLocation: classpath:/mybatis-config.xml
+
+mysql:
+  datasource:
+    readSize: 1  #读库个数
+    type: com.alibaba.druid.pool.DruidDataSource
+    mapperLocations: classpath:/mapper/*.xml
+    configLocation: classpath:/mybatis-config.xml
+    write:
+      url: jdbc:mysql://127.0.0.1:3339/sync_db?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+      username: root
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      minIdle: 5
+      maxActive: 100
+      initialSize: 10
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: select 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 50
+      removeAbandoned: true
+      filters: stat
+    read01:
+      url: jdbc:mysql://127.0.0.1:3340/sync_db?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+      username: root
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      minIdle: 5
+      maxActive: 100
+      initialSize: 10
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: select 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 50
+      removeAbandoned: true
+      filters: stat
